@@ -3,12 +3,14 @@ const { graphqlHTTP } = require("express-graphql");
 const mongoose = require("mongoose");
 const schema = require("./graphql/Schema");
 const resolvers = require("./graphql/Resolvers");
+require('dotenv').config()
+
+const { DB_HOST } = process.env;
 
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect(
-  "mongodb+srv://sanyok486:JicCP3SuhrLTSRig@cluster0.nd1vspl.mongodb.net/Cars");
+mongoose.connect(DB_HOST);
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
 });
